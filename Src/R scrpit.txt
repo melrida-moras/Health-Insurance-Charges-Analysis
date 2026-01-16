@@ -1,0 +1,782 @@
+################################# PROBLEM 1 ################################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+> #Importing dataset
+> 
+> Insurance_Data <- read.csv("Health-Insurance-Dataset.csv")
+> View(Insurance_Data) 
+
+> #finding Summary statistics
+Reference:https://bookdown.org/ajohnso6/r_training_public/summary-statistics.html
+> summary(Insurance_Data)
+      age            sex                 bmi       
+ Min.   :18.00   Length:1338        Min.   :15.96  
+ 1st Qu.:27.00   Class :character   1st Qu.:26.30  
+ Median :39.00   Mode  :character   Median :30.40  
+ Mean   :39.21                      Mean   :30.66  
+ 3rd Qu.:51.00                      3rd Qu.:34.69  
+ Max.   :64.00                      Max.   :53.13  
+    children        smoker             region         
+ Min.   :0.000   Length:1338        Length:1338       
+ 1st Qu.:0.000   Class :character   Class :character  
+ Median :1.000   Mode  :character   Mode  :character  
+ Mean   :1.095                                        
+ 3rd Qu.:2.000                                        
+ Max.   :5.000                                        
+    charges     
+ Min.   : 1122  
+ 1st Qu.: 4740  
+ Median : 9382  
+ Mean   :13270  
+ 3rd Qu.:16640  
+ Max.   :63770  
+
+
+
+
+> #finding standard deviation
+> Standard_deviation_age <- sd(Insurance_Data$age)
+> print(Standard_deviation_age)
+
+[1] 14.04996
+
+> Standard_deviation_bmi <- sd(Insurance_Data$bmi)
+> print(Standard_deviation_bmi)
+[1] 6.098187
+
+> Standard_deviation_children <- sd(Insurance_Data$children)
+> print(Standard_deviation_children)
+[1] 1.205493
+
+>Standard_deviation_charges <- sd(Insurance_Data$charges)
+> print(Standard_deviation_charges)
+[1] 12110.01
+
+
+
+> #finding Variance
+>variances_age <- var(Insurance_Data$age)
+> print(variances_age)
+[1] 197.4014
+
+> variances_bmi <- var(Insurance_Data$bmi)
+> print(variances_bmi)
+[1] 37.18788
+
+> variances_children<- var(Insurance_Data$children)
+
+> print(variances_children)
+[1] 1.453213
+
+> variances_charges <- var(Insurance_Data$charges)
+> print(variances_charges)
+[1] 146652372
+
+
+
+
+
+
+> #histogram for Age
+> install.packages("ggplot2")
+
+> library(ggplot2)
+
+#Plotting histograms
+> ggplot(Insurance_Data, aes(x = age)) +
+  geom_histogram(binwidth = 4, fill = "red", color = "black")+labs(title="Distribution of Age")
+> ggplot(Insurance_Data, aes(x = age)) +
+  geom_histogram(binwidth = 4, fill = "lightgreen", color = "black")+labs(title="Distribution of Age")
+> ggplot(Insurance_Data, aes(x = bmi)) +
+  geom_histogram(binwidth = 4, fill = "lightpink", color = "black")+labs(title="Distribution of Body Mass Index")
+
+> ggplot(Insurance_Data, aes(x = children)) +
+  geom_histogram(binwidth = 4, fill = "lavender", color = "black")+labs(title="Distribution of Children")
+> ggplot(Insurance_Data, aes(x = children)) +
+  geom_histogram(binwidth = 6, fill = "lavender", color = "black")+labs(title="Distribution of Children")
+> ggplot(Insurance_Data, aes(x = children)) +
+ geom_histogram(binwidth = 1, fill = "lavender", color = "black")+labs(title="Distribution of Children")
+> ggplot(Insurance_Data, aes(x = charges)) +
+  geom_histogram(binwidth = 4, fill = "skyblue", color = "black")+labs(title="Distribution of Charges")
+> ggplot(Insurance_Data, aes(x = charges)) +
+  geom_histogram(binwidth = 6, fill = "skyblue", color = "black")+labs(title="Distribution of Charges")
+> ggplot(Insurance_Data, aes(x = charges)) +
+   geom_histogram(binwidth = 2, fill = "skyblue", color = "black")+labs(title="Distribution of Charges")
+> ggplot(Insurance_Data, aes(x = charges)) +
+  geom_histogram(binwidth = 500, fill = "skyblue", color = "black")+labs(title="Distribution of Charges")
+> ggplot(Insurance_Data, aes(x = charges)) +
+   geom_histogram(binwidth = 400, fill = "skyblue", color = "black")+labs(title="Distribution of Charges")
+> 
+
+
+#boxplots
+
+> Insurance_Data <- read.csv("Health-Insurance-Dataset.csv")
+> # Using ggplot2
+> library(ggplot2)
+> 
+> ggplot(Insurance_Data, aes(x = smoker, y = charges, fill = smoker)) +
++     geom_boxplot() +
++     labs(title = "Distribution of Charges by Smoking Status",
++          x = "Smoker",
++          y = "Charges ($)",
++          fill = "Smoker") +
++     scale_fill_manual(values = c("lightgreen", "Orange"))  
+> 
+> # Using ggplot2
+> library(ggplot2)
+> 
+> ggplot(Insurance_Data, aes(x = region, y = charges, fill = region)) +
++     geom_boxplot() +
++     labs(title = "Distribution of Charges by Region",
++          x = "Region",
++          y = "Charges ($)",
++          fill = "Region") +
++     scale_fill_manual(values = c("salmon", "yellow","skyblue","lavender"))  
+> 
+> # Using ggplot2
+> library(ggplot2)
+> 
+>  
+> > # Using ggplot2
+> library(ggplot2)
+> 
+> ggplot(Insurance_Data, aes(x = sex, y = charges, fill = sex)) +
++     geom_boxplot() +
++     labs(title = "Distribution of Charges by Sex",
++          x = "Sex",
++          y = "Charges ($)",
++          fill = "Sex") +
++     scale_fill_manual(values = c("skyblue","lightpink"))  
+> 
+# Using ggplot2
+> library(ggplot2)
+ 
+> 
+>  
+> ggplot(Insurance_Data, aes(x = smoker, y = charges, fill = smoker)) +
+     geom_boxplot() +
+     labs(title = "Distribution of Charges by Smoking Status",
+          x = "Smoker",
+          y = "Charges ($)",
+          fill = "Smoker") +
+     scale_fill_manual(values = c("lightgreen", "Orange"))  
+> 
+> # Using ggplot2
+> library(ggplot2)
+> 
+> ggplot(Insurance_Data, aes(x = region, y = charges, fill = region)) +
+     geom_boxplot() +
+     labs(title = "Distribution of Charges by Region",
+          x = "Region",
+          y = "Charges ($)",
+          fill = "Region") +
+     scale_fill_manual(values = c("salmon", "yellow","skyblue","lavender"))  
+> 
+> # Using ggplot2
+> library(ggplot2)
+> 
+> ># Using ggplot2
+> library(ggplot2)
+> 
+> 
+> # Using ggplot2
+> library(ggplot2)
+> 
+> ggplot(Insurance_Data, aes(x = sex, y = charges, fill = sex)) +
+     geom_boxplot() +
+     labs(title = "Distribution of Charges by Sex",
+          x = "Sex",
+          y = "Charges ($)",
+          fill = "Sex") +
+     scale_fill_manual(values = c("skyblue","lightpink"))  
+> 
+> summary(Insurance_Data$age)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  18.00   27.00   39.00   39.21   51.00   64.00 
+> sex_frequency <- table(insurance_data$sex)
+Error in table(insurance_data$sex) : object 'insurance_data' not found
+> sex_frequency <- table(Insurance_Data$sex)
+> print(sex_frequency)
+
+female   male 
+   662    676 
+> colors <- c("yellow","red")
+> pie(sex_frequency, main = "Frequency of Sex", labels = c("Male", "Female"), col = colors)
+> colors <- c("lightblue","salmon")
+> pie(sex_frequency, main = "Frequency of Sex", labels = c("Male", "Female"), col = colors)
+
+
+> # Calculate percentages and plot pie chart
+> sex_percentage <- prop.table(sex_frequency) * 100
+> pie(sex_percentage, main = "Frequency of Sex", labels = c("Male", "Female"), col = colors)
+> pie(sex_percentage, main = "Frequency of Sex", labels = c("Male", "Female"), col = colors)
+> labels <- paste(names(sex_frequency), sprintf("%.1f%%", sex_percentage))
+> pie(sex_percentage, main = "Frequency of Sex", labels = c("Male", "Female"), col = colors)
+> pie(sex_percentage, main = "Frequency of Sex", labels = labels, col=colors)
+
+#Frquency of smoker
+> pie(smoker_percentage, main = "Frequency of Smokers", labels = labelsmo, col=colors)
+> smoker_frequency <- table(Insurance_Data$smoker)
+> smoker_percentage <- prop.table(smoker_frequency) * 100
+> labels <- paste(names(smoker_frequency), sprintf("%.1f%%", smoker_percentage))
+> colors <- c("brown", "lightgreen")
+> pie(smoker_frequency, main = "Frequency of Smoker", labels = labels, col = colors)
+
+
+#frequency of Sex
+
+> sex_frequency <- table(Insurance_Data$sex)
+> print(sex_frequency)
+
+female   male 
+   662    676 
+
+# Calculate percentages
+> sex_percentage <- prop.table(sex_frequency) * 100
+
+> labels <- paste(names(sex_frequency), sprintf("%.1f%%", sex_percentage))
+> colors <- c("brown","lightgreen")
+
+> pie(sex_frequency, main = "Frequency of Sex", labels = labels, col = colors)
+
+
+# frequency of region
+
+ region_frequency <- table(Insurance_Data$region)
+> print(region_frequency)
+
+northeast northwest southeast 
+      324       325       364 
+southwest 
+      325 
+> region_percentage <- prop.table(region_frequency) * 100
+> labels <- paste(names(region_frequency), sprintf("%.1f%%", region_percentage))
+> pie(region_percentage, main = "Frequency of Region", labels = labels, col = colors)
+> 
+> colors <- c("yellow","orange","lavender","salmon")
+> pie(region_percentage, main = "Frequency of Region", labels = labels, col = colors)
+> 
+----*****-----------***--------*****-------*****--------*****---------******---------***----------*----****-------******-------*****-------*****------------
+########################################  PROBLEM 2 #################################################################################################
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+> View(Insurance_Data)
+correlation_matrix <- cor(Insurance_Data[c("age","bmi","children","charges")])
+> View(correlation_matrix)
+
+install.packages("dplyr")
+library(dplyr)
+
+View(correlation_matrix)
+> View(correlation)
+
+> # Compute Pearson correlation matrix for all continuous variables
+> correlation <- cor(select(Insurance_Data, age, bmi, children, charges), method = 'pearson')
+
+
+install.packages("corrplot")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.2/corrplot_0.92.zip'
+Content type 'application/zip' length 3844843 bytes (3.7 MB)
+downloaded 3.7 MB
+
+package ‘corrplot’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\lenovo\AppData\Local\Temp\RtmpYl7zCp\downloaded_packages
+> library(corrplot)
+# Visualize the correlation matrix using corrplot
+> corrplot(correlation, method = "color", type = "lower", tl.col = "black", tl.srt = 45)
+
+
+
+ ggplot(Insurance_Data, aes(x = age, y = charges, color = age)) +
+    geom_point() +
+     labs(
+         title = "Scatter Plot of Age by Charges",
+         x = "Age", 
+         y = "Charges"  
+     )
+> 
+> ggplot(Insurance_Data, aes(x = bmi, y = charges, color = bmi)) +
+     geom_point() +
+     labs(
+        title = "Scatter Plot of Age by Charges",
+        x = "BMI",  # Capitalized axis label for x-axis
+         y = "Charges"  # Capitalized axis label for y-axis+     )
+> 
+> ggplot(Insurance_Data, aes(x = bmi, y = charges, color = bmi)) +
+     geom_point() +
+    labs(+         title = "Scatter Plot of BMI by Charges",
+        x = "BMI",  
+        y = "Charges"  
+     )
+> 
+> ggplot(Insurance_Data, aes(x = children, y = charges, color = children)) +
+     geom_point() +
+     labs(
+         title = "Scatter Plot of children by Charges",
+         x = "Children",  
+         y = "Charges"  
+     )
+> 
+
+
+ 
+
+> # Chi-square test for categorical variables
+> #Sex vs Region
+> chisq_sex_region <- chisq.test(Insurance_Data$sex, Insurance_Data$region)
+> #contingency table of Gender vs region
+> Gen_Reg_table <- table(Insurance_Data$sex, Insurance_Data$region)
+> print(chisq_sex_region)
+
+	Pearson's Chi-squared test
+
+data:  Insurance_Data$sex and Insurance_Data$region
+X-squared = 0.43514, df = 3, p-value = 0.9329
+
+> print(Gen_Reg_table)
+        
+         northeast northwest southeast southwest
+  female       161       164       175       162
+  male         163       161       189       163
+> 
+
+> # Bar plot for Sex vs Region
+> barplot(Gen_Reg_table, beside = TRUE, legend.text = TRUE, 
+         col = c("lightblue", "pink"), main = "Association of Sex vs Region",
+         xlab = "Sex", ylab = "Count")
+> 
+
+
+
+
+#Sex vs Smoker
+> chisq_sex_smoker <- chisq.test(Insurance_Data$sex, Insurance_Data$smoker)
+> Gen_Smo_table <- table(Insurance_Data$sex, Insurance_Data$smoker)
+> print(chisq_sex_smoker)
+
+	Pearson's Chi-squared test with Yates' continuity
+	correction
+
+data:  Insurance_Data$sex and Insurance_Data$smoker
+X-squared = 7.3929, df = 1, p-value = 0.006548
+
+> print(Gen_Smo_table)
+        
+          no yes
+  female 547 115
+  male   517 159
+
+
+# Bar plot for Sex vs Smoker
+> barplot(Gen_Smo_table, beside = TRUE, legend.text = TRUE, fill=smoker ,col = c("lightblue", "pink"), main = "Association of Sex vs Smoker",
+         xlab = "Sex", ylab = "Count")
+
+
+
+
+
+
+#Region vs Smoker
+> # Chi-square test for categorical variables
+> chisq_Region_smoker <- chisq.test(Insurance_Data$region, Insurance_Data$smoker)
+> Region_Smoker_table <- table(Insurance_Data$region, Insurance_Data$smoker)
+
+> print(chisq_Region_smoker)
+
+	Pearson's Chi-squared test
+
+data:  Insurance_Data$region and Insurance_Data$smoker
+X-squared = 7.3435, df = 3, p-value = 0.06172
+
+> print(Region_Smoker_table)
+           
+             no yes
+  northeast 257  67
+  northwest 267  58
+  southeast 273  91
+  southwest 267  58
+
+# Bar plot for Region vs Smoker
+> barplot(Region_Smoker_table, beside = TRUE, legend.text = TRUE, 
+      col = c("lightblue", "pink"), main = "Association of Region vs Smoker",
+         xlab = "Region", ylab = "Count")
+> 
+*-*--*--*--*--*-*---*----*-----*-----*-----*---*----*----*-----*-----*----*----*----*-----*----*-----*-----*-----*----*--------*----*******-------*----*----
+################################################# PROBLEM 3 ################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+> #Multiple Linear Progression
+ 
+
+> lm_multiple <- lm(charges~age+bmi+children+smoker+sex+region, data = Insurance_Data)
+> summary(lm_multiple)
+
+Call:
+lm(formula = charges ~ age + bmi + children + smoker + sex + 
+    region, Insurance_Data = data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-11304.9  -2848.1   -982.1   1393.9  29992.8 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     -11938.5      987.8 -12.086  < 2e-16 ***
+age                256.9       11.9  21.587  < 2e-16 ***
+bmi                339.2       28.6  11.860  < 2e-16 ***
+children           475.5      137.8   3.451 0.000577 ***
+smokeryes        23848.5      413.1  57.723  < 2e-16 ***
+sexmale           -131.3      332.9  -0.394 0.693348    
+regionnorthwest   -353.0      476.3  -0.741 0.458769    
+regionsoutheast  -1035.0      478.7  -2.162 0.030782 *  
+regionsouthwest   -960.0      477.9  -2.009 0.044765 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6062 on 1329 degrees of freedom
+Multiple R-squared:  0.7509,	Adjusted R-squared:  0.7494 
+F-statistic: 500.8 on 8 and 1329 DF,  p-value: < 2.2e-16
+
+> install.packages("knitr")
+> install.packages("kableExtra")
+
+> library(kableExtra)
+> library(knitr)
+
+> kable(summary(lm_multiple)$coef, digits = c(3, 3, 2, 6, 4), align = "c") %>%
++     kable_styling(full_width = FALSE)
+
+> library(ggplot2)
+> #Scatter Plot of age vs charges
+> ggplot(data = Insurance_Data, aes(x = age, y = charges)) +
+    geom_point(color = "blue") + 
+    geom_smooth(method = "lm", se = FALSE, color = "red") +  
+    labs(title = "Scatter plot of Age vs Charges", x = "Age", y = "Charges") +
+    facet_wrap(~region)
+`geom_smooth()` using formula = 'y ~ x'
+
+> #Scatter Plot of bmi vs charges
+> ggplot(data =Insurance_Data, aes(x = bmi, y = charges)) +
+    geom_point(color = "green") +
+    geom_smooth(method = "lm", se = FALSE, color = "orange") +
+    labs(title = "Scatter plot of BMI vs Charges", x = "BMI", y = "Charges") +
+    facet_wrap(~region)
+`geom_smooth()` using formula = 'y ~ x'
+
+> #Scatter Plot of children vs charges
+
+> ggplot(data = Insurance_Data, aes(x = children, y = charges)) +
+     geom_point(color = "purple") +
+     geom_smooth(method = "lm", se = FALSE, color = "yellow") +
+     labs(title = "Scatter plot of Children vs Charges", x = "Children", y = "Charges") +
+     facet_wrap(~region)
+`geom_smooth()` using formula = 'y ~ x'
+
+> ##Scatter Plot of smoker vs charges
+> ggplot(data = Insurance_Data, aes(x = smoker, y = charges)) +
+    geom_point(color = "cyan") +
+    geom_smooth(method = "lm", se = FALSE, color = "magenta") +
+    labs(title = "Scatter plot of Smoker vs Charges", x = "Smoker", y = "Charges") +
+    facet_wrap(~region)
+`geom_smooth()` using formula = 'y ~ x'
+
+----*---------*-----*--------*-----*------*------*------*------*-------*---------****--------*****-------****-----*********-----------------------******
+##################################  PROBLEM 4 ##########################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+ # Split the charges into two categories based on median
+> median_charge <- median(Insurance_Data$charges)
+> Insurance_Data$CHARGE_split <- ifelse(Insurance_Data$charges > median_charge, "High", "Low")
+> # Summary statistics for the predictor variables by CHARGE-split
+> summary_statistics <- Insurance_Data %>%
++     group_by(CHARGE_split) %>%
++     summarise(
++         Age_Mean = mean(age),
++         BMI_Mean = mean(bmi),
++         Children_Mean = mean(Children)
+
+
+
+# Visualize the differences in central tendencies
+> ggplot(Insurance_Data, aes(x = CHARGE_split, y = age, fill = CHARGE_split)) +
+     geom_boxplot() +
+     labs(title = "Age Distribution by Charge Split",
+          x = "Charge Split",
+          y = "Age") +
+     scale_fill_manual(values = c("High" = "red", "Low" = "blue"))  
+> 
+> 
+> ggplot(Insurance_Data, aes(x = CHARGE_split, y = bmi, fill = CHARGE_split)) +
+     geom_boxplot() +
+     labs(title = "BMI Distribution by Charge Split",
+          x = "Charge Split",
+          y = "BMI") +
+     scale_fill_manual(values = c("High" = "salmon", "Low" = "lightgreen"))  
+> 
+> 
+
+> 
+> ggplot(Insurance_Data, aes(x = CHARGE_split, y = children, fill = CHARGE_split)) +
+     geom_boxplot() +
+     labs(title = "Number of Children Distribution by Charge Split",
+          x = "Charge Split",
+          y = "BMI") +
+     scale_fill_manual(values = c("High" = "skyblue", "Low" = "blue"))  
+> 
+
+
+
+
+ #statistical tests(t-test)
+> # Assuming predictor variables are independent of one another
+> # Age
+> age_test <- t.test(age ~ CHARGE_split, data = Insurance_Data)
+> print(age_test)
+
+	Welch Two Sample t-test
+
+data:  age by CHARGE_split
+t = 21.822, df = 1206.3,
+p-value < 2.2e-16
+alternative hypothesis: true difference in means between group High and group Low is not equal to 0
+95 percent confidence interval:
+ 13.10454 15.69367
+sample estimates:
+mean in group High 
+          46.40658 
+ mean in group Low 
+          32.00747 
+
+
+
+> #BMI
+> bmi_test <- t.test(bmi ~ CHARGE_split, data = Insurance_Data)
+> 
+> print(bmi_test)
+
+	Welch Two Sample t-test
+
+data:  bmi by CHARGE_split
+t = 3.2992, df = 1336,
+p-value = 0.0009952
+alternative hypothesis: true difference in means between group High and group Low is not equal to 0
+95 percent confidence interval:
+ 0.4443057 1.7476972
+sample estimates:
+mean in group High 
+           31.2114 
+ mean in group Low 
+           30.1154 
+
+> # Number of Children
+> children_test <- t.test(children ~ CHARGE_split, data = Insurance_Data)
+> 
+> print(children_test)
+
+	Welch Two Sample t-test
+
+data:  children by CHARGE_split
+t = 0.70289, df = 1333.4,
+p-value = 0.4822
+alternative hypothesis: true difference in means between group High and group Low is not equal to 0
+95 percent confidence interval:
+ -0.08298978  0.17566541
+sample estimates:
+mean in group High 
+          1.118087 
+ mean in group Low 
+          1.071749 
+
+
+
+
+
+
+
+ # Chi-square test for categorical variables
+> # Assuming predictor variables are independent of one another
+> # Sex
+> sex_table <- table(Insurance_Data$sex, Insurance_Data$CHARGE_split)
+> sex_chi <- chisq.test(sex_table)
+> print(sex_chi)
+
+	Pearson's Chi-squared test
+	with Yates' continuity
+	correction
+
+data:  sex_table
+X-squared = 0.0029899, df =
+1, p-value = 0.9564
+
+> # Smoking habits
+> smoking_table <-table( Insurance_Data$smoker, Insurance_Data$CHARGE_split)
+> smoking_chi <- chisq.test(smoking_table)
+> print(smoking_chi)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  smoking_table
+X-squared = 342.05, df = 1, p-value < 2.2e-16
+
+> # Region
+> region_table <- table(Insurance_Data$region, Insurance_Data$CHARGE_split)
+> region_chi <- chisq.test(region_table)
+> print(region_chi)
+
+	Pearson's Chi-squared test
+
+data:  region_table
+X-squared = 4.466, df = 3,
+p-value = 0.2153
+
+
+#sex plot
+
+> plot_data_sex <- as.data.frame(table(Insurance_Data$sex, Insurance_Data$CHARGE_split))
+
+> colnames(plot_data_sex) <- c("Sex", "CHARGE_split", "Frequency")
+
+> ggplot(plot_data_sex, aes(x=Sex, y=Frequency, fill=CHARGE_split)) +    geom_bar(stat="identity", position="dodge") +  labs(title = "Association between Sex and CHARGE_split") +  xlab("Sex") +  ylab("Frequency")
+
+
+
+
+
+#Bar plot for smoking habits
+> plot_data_smoker <- as.data.frame(table(Insurance_Data$smoker, Insurance_Data$CHARGE_split))
+> 
+> colnames(plot_data_smoker) <- c("smoker", "CHARGE_split", "Frequency")
+> 
+> ggplot(plot_data_smoker, aes(x=smoker, y=Frequency, fill=CHARGE_split)) +    geom_bar(stat="identity", position="dodge") +  labs(title = "Association between Smoker and CHARGE_split") +  xlab("Smoker") +  ylab("Frequency")
+
+
+#Bar plot for region
+> plot_data_region <- as.data.frame(table(Insurance_Data$region, Insurance_Data$CHARGE_split))
+> 
+> colnames(plot_data_region) <- c("region", "CHARGE_split", "Frequency")
+> 
+> ggplot(plot_data_region, aes(x=region, y=Frequency, fill=CHARGE_split)) +    geom_bar(stat="identity", position="dodge") +  labs(title = "Association between Region and CHARGE_split") +  xlab("Region") +  ylab("Frequency")
+
+---------------********************-----------------------*********************----------------------------*****************----------*********------------
+#####################  PROBLEM 5   #########################################################################################################################
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+> # Check normality assumption for Age
+> shapiro_test_age <- shapiro.test(Insurance_Data$age)
+> shapiro_test_age
+
+	Shapiro-Wilk normality test
+
+data:  Insurance_Data$age
+W = 0.9447, p-value < 2.2e-16
+
+> 
+> # Check normality assumption for BMI
+> shapiro_test_bmi <- shapiro.test(Insurance_Data$bmi)
+> shapiro_test_bmi
+
+	Shapiro-Wilk normality test
+
+data:  Insurance_Data$bmi
+W = 0.99389, p-value = 2.605e-05
+
+> # Kruskal-Wallis test for Age with respect to Region
+> kruskal_test_age <- kruskal.test(age ~ region, data = Insurance_Data)
+> kruskal_test_age
+
+	Kruskal-Wallis rank sum test
+
+data:  age by region
+Kruskal-Wallis chi-squared = 0.41382,
+df = 3, p-value = 0.9374
+
+> # Kruskal-Wallis test for BMI with respect to Region
+> kruskal_test_bmi <- kruskal.test(bmi ~ region, data = Insurance_Data)
+> kruskal_test_bmi
+
+	Kruskal-Wallis rank sum test
+
+data:  bmi by region
+Kruskal-Wallis chi-squared = 94.689,
+df = 3, p-value < 2.2e-16
+
+> 
+> # Load necessary library for post-hoc tests
+
+> install.packages("dunn.test")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.2/dunn.test_1.3.5.zip'
+Content type 'application/zip' length 53917 bytes (52 KB)
+downloaded 52 KB
+
+package ‘dunn.test’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\lenovo\AppData\Local\Temp\Rtmpa8lGrn\downloaded_packages
+> # Load necessary library for post-hoc tests
+> library(dunn.test)
+> # Post-hoc pairwise comparisons for BMI using Dunn's test with Bonferroni correction
+> posthoc_bmi <- dunn.test(Insurance_Data$bmi, Insurance_Data$region, method = "bonferroni")
+  Kruskal-Wallis rank sum test
+
+data: x and group
+Kruskal-Wallis chi-squared = 94.6886, df = 3, p-value = 0
+
+
+                           Comparison of x by group                            
+                                 (Bonferroni)                                  
+Col Mean-|
+Row Mean |   northeas   northwes   southeas
+---------+---------------------------------
+northwes |  -0.139771
+         |     1.0000
+         |
+southeas |  -8.413665  -8.276738
+         |    0.0000*    0.0000*
+         |
+southwes |  -3.036924  -2.899387   5.296421
+         |    0.0072*    0.0112*    0.0000*
+
+alpha = 0.05
+Reject Ho if p <= alpha/2
+> posthoc_bmi
+$chi2
+[1] 94.68857
+
+$Z
+[1] -0.1397714 -8.4136650 -8.2767381
+[4] -3.0369246 -2.8993878  5.2964216
+
+$P
+[1] 4.444203e-01 1.986973e-17 6.329761e-17
+[4] 1.195026e-03 1.869461e-03 5.904699e-08
+
+$P.adjusted
+[1] 1.000000e+00 1.192184e-16 3.797856e-16
+[4] 7.170156e-03 1.121676e-02 3.542820e-07
+
+$comparisons
+[1] "northeast - northwest"
+[2] "northeast - southeast"
+[3] "northwest - southeast"
+[4] "northeast - southwest"
+[5] "northwest - southwest"
+[6] "southeast - southwest"
+
+
+> # Create a boxplot of BMI by Region
+> ggplot(Insurance_Data, aes(x = region, y = bmi, fill = region)) +
+     geom_boxplot() +
+     labs(x = "Region", y = "BMI") +
+     ggtitle("Distribution of BMI by Region") +
+     theme_minimal() +
+     geom_text(aes(x = 1, y = max(bmi), label = ifelse(kruskal_test_bmi$p.value < 0.05, "*", "")),
+               size = 6, vjust = -0.5, hjust = 0.5, color = "red") +
+     geom_text(aes(x = 1, y = max(bmi), label = paste("p =", format(kruskal_test_bmi$p.value, digits = 2))),
+               size = 4, vjust = -0.8, hjust = 0.5)
+> 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
